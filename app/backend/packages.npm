@@ -1,2 +1,3 @@
-ts-node-dev
-ts-node-dev
+bcryptjs
+@types/bcryptjs
+joi
