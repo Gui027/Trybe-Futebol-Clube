@@ -10,9 +10,21 @@ class matches extends Model {
 }
 
 matches.init({
-  homeTeam: DataTypes.INTEGER,
+  homeTeam: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'teams',
+      key: 'id',
+    },
+  },
   homeTeamGoals: DataTypes.INTEGER,
-  awayTeam: DataTypes.INTEGER,
+  awayTeam: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'teams',
+      key: 'id',
+    },
+  },
   awayTeamGoals: DataTypes.INTEGER,
   inProgress: DataTypes.BOOLEAN,
 }, {
