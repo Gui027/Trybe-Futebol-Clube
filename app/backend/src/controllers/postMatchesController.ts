@@ -3,7 +3,6 @@ import matches from '../database/models/matches';
 
 const postMatchesController = async (req: Request, res: Response) => {
   const token = req.headers.authorization;
-  const { id } = req.params;
 
   if (!token) {
     return res.status(401).json({ message: 'Token not found' });
@@ -13,7 +12,7 @@ const postMatchesController = async (req: Request, res: Response) => {
   const createMatch = await matches.create({
     homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress });
 
-  if (!id) {
+  if (homeTeam > 16 || homeTeam < 1 || awayTeam > 16 || awayTeam < 1) {
     return res.status(404).json({ message: 'There is no team with such id!' });
   }
 
