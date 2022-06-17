@@ -2,7 +2,6 @@ import matches from '../database/models/matches';
 
 const patchMatchesService = async (id:string) => {
   const match = await matches.update({ inProgress: false }, { where: { id } });
-  console.log(match);
   if (!match) {
     throw new Error('math is not inProgress');
   }
