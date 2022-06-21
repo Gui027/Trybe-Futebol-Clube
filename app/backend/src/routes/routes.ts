@@ -9,6 +9,7 @@ import postMatchesController from '../controllers/postMatchesController';
 import roleMiddlewares from '../middlewares/roleMiddlewares';
 import patchMatchesController from '../controllers/patchMatchesController';
 import patchMatchesIdController from '../controllers/patchMatchesIdController';
+import leaderboardController from '../controllers/leaderboardController';
 
 const routes = Router();
 
@@ -27,5 +28,7 @@ routes.post('/matches', postMatchesController.postMatchesController);
 routes.patch('/matches/:id/finish', patchMatchesController.patchMatchesController);
 
 routes.patch('/matches/:id', patchMatchesIdController.upddateById);
+
+routes.get('/leaderboard/home', leaderboardController.getAllHome);
 
 export default routes;

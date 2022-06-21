@@ -3,10 +3,17 @@ import db from '.';
 import matches from './matches';
 
 class teams extends Model {
+  id: number;
   teamName: string;
 }
 
 teams.init({
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    autoIncrement: true,
+    primaryKey: true,
+  },
   teamName: DataTypes.STRING,
 }, {
   sequelize: db,
