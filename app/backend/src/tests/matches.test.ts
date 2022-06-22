@@ -26,43 +26,23 @@ describe('Matches', () => {
         expect(chaiHttpResponse.body).to.be.deep.equal(matchesMock.matches);
     })
 
-    it('Create', async () => {
-
-        const mockModel = {
-          id: 1,
-          homeTeam: 16,
-          homeTeamGoals: 2,
-          awayTeam: 9,
-          awayTeamGoals: 0,
-          inProgress: true,
-        };
-    
-        sinon
-          .stub(matches, "create")
-          .resolves(mockModel as any);
-    
-        chaiHttpResponse = await chai
-          .request(app)
-          .post('/matches')
-          .send({
-            homeTeam: 16,
-            homeTeamGoals: 2,
-            awayTeam: 9,
-            awayTeamGoals: 0,
-            inProgress: true,
+    it('Verificar se cria a partida', async () => {
+        sinon.stub(matches, 'create').resolves(matchesMock.postMatches as any);
+        const test = await chai.request(app).post('/login').send({
+            email: 'admin@admin.com',
+            password: 'secret_admin',
           });
-    
-        const resultExpected = {
-            id: 1,
-            homeTeam: 16,
+
+        chaiHttpResponse = await chai.request(app).post('/matches').send({
+            homeTeam: 8,
             homeTeamGoals: 2,
-            awayTeam: 9,
-            awayTeamGoals: 0,
+            awayTeam: 6,
+            awayTeamGoals: 2,
             inProgress: true,
-        }
+          }).set({authorization: test.body.token })
     
         expect(chaiHttpResponse.status).to.be.equal(201);
-        expect(chaiHttpResponse.body).to.have.deep.equal(resultExpected);
+        expect(chaiHttpResponse.body).to.have.deep.equal(matchesMock.postMatches);
     
         (matches.create as sinon.SinonStub).restore();
       });

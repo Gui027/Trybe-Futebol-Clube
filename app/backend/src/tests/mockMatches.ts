@@ -1,4 +1,14 @@
 export default {
+    postMatches: [
+      {
+        "id": 50,
+        "homeTeam": 8,
+        "awayTeam": 6,
+        "homeTeamGoals": 2,
+        "awayTeamGoals": 2,
+        "inProgress": true
+      }
+    ],
     matches : [
       {
         "id": 1,
