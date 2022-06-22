@@ -25,4 +25,11 @@ describe('Teams', () => {
     expect(chaiHttpResponse.status).to.be.equal(200);
     expect(chaiHttpResponse.body).to.deep.equal(mockTeams.teams[0]);
   });
+
+  it('Verificar se não consegue pegar o Id', async () => {
+    chaiHttpResponse = await chai.request(app).get('/teams/20');
+
+    expect(chaiHttpResponse.status).to.be.equal(404);
+    expect(chaiHttpResponse.body.message).to.be.equal('not found team');
+  });
 });

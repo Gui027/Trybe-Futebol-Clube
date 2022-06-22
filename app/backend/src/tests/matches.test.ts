@@ -25,5 +25,46 @@ describe('Matches', () => {
         expect(chaiHttpResponse.status).to.be.equal(200);
         expect(chaiHttpResponse.body).to.be.deep.equal(matchesMock.matches);
     })
+
+    it('Create', async () => {
+
+        const mockModel = {
+          id: 1,
+          homeTeam: 16,
+          homeTeamGoals: 2,
+          awayTeam: 9,
+          awayTeamGoals: 0,
+          inProgress: true,
+        };
+    
+        sinon
+          .stub(matches, "create")
+          .resolves(mockModel as any);
+    
+        chaiHttpResponse = await chai
+          .request(app)
+          .post('/matches')
+          .send({
+            homeTeam: 16,
+            homeTeamGoals: 2,
+            awayTeam: 9,
+            awayTeamGoals: 0,
+            inProgress: true,
+          });
+    
+        const resultExpected = {
+            id: 1,
+            homeTeam: 16,
+            homeTeamGoals: 2,
+            awayTeam: 9,
+            awayTeamGoals: 0,
+            inProgress: true,
+        }
+    
+        expect(chaiHttpResponse.status).to.be.equal(201);
+        expect(chaiHttpResponse.body).to.have.deep.equal(resultExpected);
+    
+        (matches.create as sinon.SinonStub).restore();
+      });
 })
 
