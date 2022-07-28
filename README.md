@@ -5,7 +5,7 @@
 ![image](https://user-images.githubusercontent.com/83846567/179008045-bc109a42-09e0-44cb-ba92-c2637c420529.png)
 
 
-O TFC é um site informativo sobre partidas e classificações de futebol! soccer
+O TFC é um site informativo sobre partidas e classificações de futebol!
 
 No time de desenvolvimento do TFC, fiquei responsável por desenvolver uma API (utilizando o método TDD) e também integrar - através do docker-compose - as aplicações para que elas funcionem consumindo um banco de dados.
 
